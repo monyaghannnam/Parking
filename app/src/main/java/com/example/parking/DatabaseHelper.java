@@ -1,21 +1,25 @@
 package com.example.parking;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-public class DatabaseHelper extends SQLiteOpenHelper {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static String DB_NAME = "app.db";
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static String DB_NAME = "SlotDatabase.db";
     private static String DB_PATH = "";
     private static final int DB_VERSION = 1;
+    private static String  Table_Name1= "Slot";
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;
@@ -99,4 +103,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             mNeedUpdate = true;
     }
 
+
+
+   /* public List<Slot>getAllSlots(){
+        List <Slot>slotList=new ArrayList<>();
+        String selectQuerey="SELECT * FROM " +Table_Name1;
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery(selectQuerey,null);
+        if (cursor.moveToFirst()){
+            do { Slot slot=new Slot();
+        slot.setId(Integer.parseInt(cursor.getString(0)));
+        slot.setStatus(Integer.parseInt(cursor.getString(1)));
+        slotList.add(slot); }while(cursor.moveToNext());
+        }
+        return slotList;
+    }*/
+
+
+   public Cursor allData(){
+       SQLiteDatabase db=this.getWritableDatabase();
+       Cursor cursor=db.rawQuery("select * from Slot",null);
+       return cursor;
+   }
+
 }
+
+
+
+
+
+
