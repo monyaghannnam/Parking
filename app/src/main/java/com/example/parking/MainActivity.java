@@ -11,19 +11,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private TextView txt;
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        txt=(TextView)findViewById(R.id.txt);
         mDBHelper = new DatabaseHelper(this);
+
 
         try {
             mDBHelper.updateDataBase();
@@ -43,60 +47,22 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
+            int c=0;
+            String s="";
             while(cursor.moveToNext()){
+                c++;
+                 s+="Id"+cursor.getString(0)+" ";
                 Toast.makeText(getApplicationContext(), "Id"+cursor.getString(0), Toast.LENGTH_LONG).show();
 
             }//while
-
+            txt.setText(Integer.toString(c));
 
         }
 
 
 
 
-       /* txt=(TextView)findViewById(R.id.txt);
-        DatabaseHelper db=new DatabaseHelper(this);
-        List<Slot>slots=db.getAllSlots();*/
 
-      /*  checkit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listdata(showit);
-            }
-        });*/
-     //   for(Slot slot:slots){
-
-          //  String log="ID:"+slot.getId()+"status"+slot.getStatus();
-        //     res+=log;
-       // }
-       // txt.setText(res);
-//        DataAccess dataAccess=DataAccess.getInstance(getApplicationContext());
-//        dataAccess.open();
-//
-//        String name=dataAccess.getStatus(0);
-//        txt.setText(name);
-//        Log.v("monyaaaa","areeeen");
-//        dataAccess.close();
-////        mDBHelper = new DatabaseHelper(this);
-//
-//        try {
-//            mDBHelper.updateDataBase();
-//        } catch (IOException mIOException) {
-//            throw new Error("UnableToUpdateDatabase");
-//        }
-//
-//        try {
-//            mDb = mDBHelper.getWritableDatabase();
-//        } catch (SQLException mSQLException) {
-//            throw mSQLException;
-//        }
-//
-////        mDb = mDBHelper.getWritableDatabase();
-////        Cursor resultSet = mDb.rawQuery("Select * from User",null);
-////        resultSet.moveToFirst();
-////        String username = resultSet.getString(1);
-
-////       // mDb.query("User",new String[]{"id" , "username"},null,null,null,null,null);
 
     }
 
