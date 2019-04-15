@@ -128,11 +128,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
    public Cursor total_free_slot(){
        SQLiteDatabase db=this.getWritableDatabase();
-       Cursor cursor=db.rawQuery("select Status from Slot where Status = ?",new String[] {"0"});
+       Cursor cursor=db.rawQuery("select * from Slot where Status = ?",new String[] {"0"});
        return cursor;
 
 
    }
+    public Cursor floor_free_slot(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("select Id from Floor",null);
+        return cursor;
+
+
+    }
 
 }
 
