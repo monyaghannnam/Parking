@@ -140,6 +140,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+    public Cursor parking_location(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("select * from Parking_Locations",null);
+        return cursor;
+
+
+    }
 
 }
 
