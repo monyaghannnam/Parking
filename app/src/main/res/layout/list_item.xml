@@ -24,7 +24,7 @@
         android:layout_gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="90dp"
+        android:paddingLeft="50dp"
         android:layout_toRightOf="@+id/list_img"
         />
     <TextView
@@ -35,7 +35,7 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:layout_toRightOf="@+id/name"
-        android:paddingLeft="90dp" />
+        android:paddingLeft="50dp" />
 
 
 
