@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView txt;
+    private Button btn;
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title);
 
-        txt = (TextView) findViewById(R.id.txt);
+        btn = (Button) findViewById(R.id.btn);
         mDBHelper = new DatabaseHelper(this);
         /////////////////////////ListView////////////////////////////////
        // ArrayList<String> arrayList = new ArrayList<String>();
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+/*
         Cursor cursor = mDBHelper.total_free_slot();
 
         if (cursor.getCount() == 0) {
@@ -169,8 +169,22 @@ public class MainActivity extends AppCompatActivity {
 
         }//else
 
-
+*/
     }
 
 
+    public void show_nearest_parking(View view) {
+        ArrayList<Word> list = new ArrayList<Word>();
+
+        list.add(new Word("parking1",1));
+        list.add(new Word("parking2",2));
+        list.add(new Word("parking3",3));
+        list.add(new Word("parking4",4));
+        list.add(new Word("parking5",5));
+
+        WordAdapter adapter = new WordAdapter (MainActivity.this, list);
+        ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
+
+    }
 }

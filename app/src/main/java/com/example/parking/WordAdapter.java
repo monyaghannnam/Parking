@@ -37,21 +37,17 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
 // Get the {@link AndroidFlavor} object located at this position in the list
         current=getItem(position);
+        TextView name=(TextView)listItemView.findViewById(R.id.name);
+        name.setText(current.getName()+"");
 
-        TextView day=(TextView)listItemView.findViewById(R.id.day);
-        day.setText(current.getDay());
+        TextView slot=(TextView)listItemView.findViewById(R.id.free_slot);
+        slot.setText(current.getFree_slot()+"");
 
-        TextView weather=(TextView)listItemView.findViewById(R.id.weather);
-        weather.setText(current.getWeather());
-
-        TextView temp=(TextView)listItemView.findViewById(R.id.tempreature);
-        temp.setText(current.getTemp());
-
-        ImageView img=(ImageView)listItemView.findViewById(R.id.list_img);
-        Picasso.with(getContext()).load(current.getImgUrl()).resize(200, 200).into(img);
+       // ImageView img=(ImageView)listItemView.findViewById(R.id.list_img);
+       // Picasso.with(getContext()).load(current.getImgUrl()).resize(200, 200).into(img);
 //
-        img.setVisibility(View.VISIBLE);
-img.setPadding(0,96,24,0);
+       // img.setVisibility(View.VISIBLE);
+       // img.setPadding(0,96,24,0);
 
 
         return listItemView;

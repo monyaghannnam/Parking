@@ -5,26 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:orientation="vertical"
     android:id="@+id/map">
 
 
 
-   <!--<fragment-->
-       <!--android:id="@+id/mapfrag"-->
-       <!--android:name="com.google.android.gms.maps.MapFragment"-->
-       <!--android:layout_width="match_parent"-->
-       <!--android:layout_height="0dp"-->
-       <!--android:layout_weight="1"-->
-       <!--tools:ignore="Suspicious0dp" />-->
-    <!--<Button-->
-        <!--android:id="@+id/btn_direction"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-
-    <TextView
+    <Button
+        android:onClick="show_nearest_parking"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Search for nearest parking"
+        android:id="@+id/btn"/>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="@color/white"
+        android:id="@+id/list"
+
+        ></ListView>
 
 
 </LinearLayout>

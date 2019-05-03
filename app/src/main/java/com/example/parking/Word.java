@@ -1,31 +1,21 @@
 package com.example.parking;
 
 public class Word {
-    String imgUrl;
-    String day;
-    String weather;
-    String temp;
+    String name;
+    int free_slot;
 
-    public Word( String day, String weather, String temp) {
-        this.imgUrl = imgUrl;
-        this.day = day;
-        this.weather = weather;
-        this.temp = temp;
+
+    public Word(String name, int free_slot ) {
+        this.name = name;
+        this.free_slot = free_slot;
+
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getName() {
+        return name;
     }
 
-    public String getDay() {
-        return day;
-    }
-
-    public String getWeather() {
-        return weather;
-    }
-
-    public String getTemp() {
-        return temp;
+    public int getFree_slot() {
+        return free_slot;
     }
 }
