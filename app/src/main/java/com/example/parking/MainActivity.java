@@ -63,21 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         btn = (Button) findViewById(R.id.btn);
         mDBHelper = new DatabaseHelper(this);
-        /////////////////////////ListView////////////////////////////////
-       // ArrayList<String> arrayList = new ArrayList<String>();
-       // arrayList.add("https://www.google.com/maps/place/%D9%85%D8%AC%D9%85%D8%B9+%D8%A7%D9%84%D9%83%D8%B1%D8%A7%D8%AC%D8%A7%D8%AA+%D9%84%D9%84%D9%82%D8%B1%D9%89%E2%80%AD/@32.2208166,35.2568928,15z/data=!4m8!1m2!2m1!1z2YXZiNmC2YEg2LPZitin2LHYp9iq!3m4!1s0x0:0xd024f9d8090d6053!8m2!3d32.2226767!4d35.2565002");
-       // ArrayList<Word> list = new ArrayList<Word>();
-        //list.add(new Word(strings.get(3),"غــدا",strings.get(5),strings.get(4)));
-        /////////////////////////Map///////////////////////////////////
 
-     /*   try {
-            String url = "https://www.google.com/maps/place/%D9%85%D8%AC%D9%85%D8%B9+%D8%A7%D9%84%D9%83%D8%B1%D8%A7%D8%AC%D8%A7%D8%AA+%D9%84%D9%84%D9%82%D8%B1%D9%89%E2%80%AD/@32.2208166,35.2568928,15z/data=!4m8!1m2!2m1!1z2YXZiNmC2YEg2LPZitin2LHYp9iq!3m4!1s0x0:0xd024f9d8090d6053!8m2!3d32.2226767!4d35.2565002";
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
-        } catch (Exception e) {
-            Toast.makeText(MainActivity.this, "Check the internet connection", Toast.LENGTH_LONG).show();
-        }*/
+
 
         /////////////////////////DataBase///////////////////////////////////
         try {
@@ -174,8 +161,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void show_nearest_parking(View view) {
-        ArrayList<Word> list = new ArrayList<Word>();
+        String name="";
+        float cor1 = 0;
+        float cor2=0;
+        ///////////parking database////////////////////
+        Cursor cursor3 = mDBHelper.parking_location();
+        if (cursor3.getCount() == 0) {
+            Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_LONG).show();
 
+        } else {
+
+            while (cursor3.moveToNext()) {
+                name=cursor3.getString(1);
+                cor1=cursor3.getFloat(2);
+                cor2=cursor3.getFloat(3);
+            }
+        }//while
+
+
+    ArrayList<Word> list = new ArrayList<Word>();
+
+        list.add(new Word(name,1));
+        list.add(new Word("parking2",2));
+        list.add(new Word("parking3",3));
+        list.add(new Word("parking4",4));
+        list.add(new Word("parking5",5));
         list.add(new Word("parking1",1));
         list.add(new Word("parking2",2));
         list.add(new Word("parking3",3));
@@ -185,6 +195,34 @@ public class MainActivity extends AppCompatActivity {
         WordAdapter adapter = new WordAdapter (MainActivity.this, list);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+
+        /////////////////////////ListViewClicklistener////////////////////////////////
+        final String url = "https://www.google.com/maps/place/%D9%85%D9%88%D9%82%D9%81+%D8%A7%D9%84%D8%A7%D8%AF%D9%87%D9%85%D9%8A+%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA+Adhami+Parking%E2%80%AD/@31.9039614,35.2062568,17z/data=!4m12!1m6!3m5!1s0x151d2aae1ce7e7e9:0x81af726d0de5160f!2z2YXZiNmC2YEg2KfZhNin2K_Zh9mF2Yog2YTZhNiz2YrYp9ix2KfYqiBBZGhhbWkgUGFya2luZw!8m2!3d31.9039569!4d35.2040681!3m4!1s0x151d2aae1ce7e7e9:0x81af726d0de5160f!8m2!3d31.9039569!4d35.2040681";
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+
+                if(position==0){
+
+                    /////////////////////////Map///////////////////////////////////
+
+          try {
+
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Check the internet connection", Toast.LENGTH_LONG).show();
+        }
+
+
+                }//our parking
+
+
+
+            }
+        });
 
     }
 }

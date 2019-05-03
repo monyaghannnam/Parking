@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:id="@+id/map">
+    android:id="@+id/map"
+    >
 
 
 
@@ -23,9 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
-        android:background="@color/white"
         android:id="@+id/list"
-
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:layout_margin="8dp"
+        android:descendantFocusability="blocksDescendants"
         ></ListView>
 
 
