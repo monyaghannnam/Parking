@@ -14,15 +14,21 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
     Word current;
+    List<Word> wordList;
 
-
-    public WordAdapter(@NonNull Context context, ArrayList<Word> words) {
+    public WordAdapter(@NonNull Context context, List<Word> words) {
         super(context, 0, words);
+        wordList = words;
+    }
 
+    public void setWordList(List<Word> wordList) {
+        this.wordList.clear();
+        this.wordList.addAll(wordList);
     }
 
     @NonNull
