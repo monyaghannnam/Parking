@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -223,7 +224,10 @@ public class MainActivity extends AppCompatActivity {
                 /////////////////////////Map///////////////////////////////////
 
                 try {
-
+//NotificationUtils.notifyText(MainActivity.this, "sdfsdf", words.get(position));
+                    Intent intent = new Intent(MainActivity.this, LocationService.class);
+                    intent.putExtra("word",words.get(position));
+                    startForegroundService(intent);
                     openMap(words.get(position).getCor1(), words.get(position).getCor2());
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "Check the internet connection", Toast.LENGTH_LONG).show();
@@ -250,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                         Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
                         int count = 0;
                         while (iterator.hasNext()) {
+
                             Sensor sensor = iterator.next().getValue(Sensor.class);
                             if (sensor.status == 0) {
                                 count++;
